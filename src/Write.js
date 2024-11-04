@@ -25,6 +25,13 @@ export default class Write extends Component {
     })
   }
 
+  detail = ()=>{
+    //글 번호에 맞는 데이터를 조회, 그 결과를 title, content에 반영, 수정모드를 true로 변경
+    
+  }
+  //this.props.isModifyMode의 값에 변동사항이 생기면 detail함수 실행, componentDidUpdate 함수로 
+
+
   update = (e)=>{
     e.preventDefault();
     Axios.post('http://localhost:8000/update',{

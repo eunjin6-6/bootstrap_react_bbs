@@ -69,6 +69,7 @@ export default class BoardList extends Component {
     console.log(this.state.checkList);
   }
 
+
   getList = ()=>{
     Axios.get('http://localhost:8000/list')
     .then((res)=>{
@@ -78,7 +79,8 @@ export default class BoardList extends Component {
       console.log(data);
       this.setState({
         BoardList:data
-      })
+      });
+      this.props.renderComplete(); //App.js에 목록 출력이 완료되었다고 전달
     
     })
     .catch((e)=>{
@@ -94,6 +96,7 @@ export default class BoardList extends Component {
 
 
   render() {
+    console.log(this.props)
     //console.log(this.state.BoardList[0].BOARD_TITLE);
     return (
       <>
@@ -124,7 +127,9 @@ export default class BoardList extends Component {
         </Table>
         <div className="d-flex gap-1">
           <Button variant="primary" >글쓰기</Button>{' '}
-          <Button variant="secondary">수정하기</Button>{' '}
+          <Button variant="secondary" onClick={()=>{
+            this.props.handleModify(this.state.checkList);
+          }}>수정하기</Button>{' '}
           <Button variant="danger">삭제하기</Button>{' '}
         </div>
       </>
