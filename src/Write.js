@@ -23,6 +23,7 @@ export default class Write extends Component {
       console.log(e);
     });  
   }
+
   update = (e)=>{
     e.preventDefault();
     Axios.post('http://localhost:8000/update',{
@@ -44,6 +45,7 @@ export default class Write extends Component {
       console.log(e);
     });  
   }
+  
   detail = () =>{
     //글번호에 맞는 데이터 조회, 글 결과를 title, content반영, 수정모드 true    
     Axios.get(`http://localhost:8000/detail?id=${this.props.boardId}`)
