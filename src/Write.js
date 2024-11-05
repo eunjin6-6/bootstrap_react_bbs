@@ -78,6 +78,14 @@ export default class Write extends Component {
     }
   }
 
+  componentDidMount() {
+    if (this.props.isModifyMode) {
+      this.detail();
+    }
+  }
+
+
+
   handleChange = (e)=>{
     this.setState({
       [e.target.name]:e.target.value //계산된 속성
