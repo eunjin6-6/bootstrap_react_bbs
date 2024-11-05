@@ -74,9 +74,9 @@ export default class BoardList extends Component {
     Axios.get('http://localhost:8000/list')
     .then((res)=>{
       // 성공 핸들링
-      //const data = res.data; 
+      //const data = res.data; 요청해서 받아온값
       const {data} = res; //destructuring 비구조 할당으로 변경
-      console.log(data);
+      //console.log(data);
       this.setState({
         BoardList:data
       });
@@ -93,10 +93,17 @@ export default class BoardList extends Component {
   }
 
 
+  componentDidUpdate(prevProps) {
+    // 목록 다시 조회
+    if (this.props.isComplete !== prevProps.isComplete) {
+      this.getList();
+    }
+  }
+
 
 
   render() {
-    console.log(this.props)
+    //console.log(this.props)
     //console.log(this.state.BoardList[0].BOARD_TITLE);
     return (
       <>
