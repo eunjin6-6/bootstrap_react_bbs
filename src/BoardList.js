@@ -86,7 +86,7 @@ export default class BoardList extends Component {
     .catch((e)=>{
       // 에러 핸들링
       console.log(e);
-    })
+    });
   }
   componentDidMount(){
     this.getList();
@@ -98,6 +98,34 @@ export default class BoardList extends Component {
     if (this.props.isComplete !== prevProps.isComplete) {
       this.getList();
     }
+  }
+
+  handleDelete = ()=>{
+    if(this.state.checkList.length === 0){
+      alert('먼저 삭제할 게시글을 선택하세요');
+      return;
+    }
+
+    /*
+    let boardIdList = '';
+    this.state.checkList.at.forEach(num=>{
+      boardIdList = boardIdList + `${num},`;
+      console.log(boardIdList); //1,2,3
+      })
+      */
+     let boardIdList = this.state.checkList.join(); //삭제하려고 체크한 번호 1,2,3
+
+      Axios.post('http://localhost:8000/delete',{
+        boardIdList
+      })
+      .then((res) => {
+        //목록 다시 조회
+        this.getList();
+      })
+      .catch((e)=> {
+        // 에러 핸들링
+        console.log(e);
+      });
   }
 
 
@@ -137,7 +165,7 @@ export default class BoardList extends Component {
           <Button variant="secondary" onClick={()=>{
             this.props.handleModify(this.state.checkList);
           }}>수정하기</Button>{' '}
-          <Button variant="danger">삭제하기</Button>{' '}
+          <Button variant="danger" onClick={()=>{this.handleDelete();}}>삭제하기</Button>{' '}
         </div>
       </>
     
