@@ -2,8 +2,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import BoardList from './BoardList';
 import Write from './Write';
+import View from './View';
 import React, { Component } from 'react'
-import { BrowserRouter, Routes, Route, Navigate, redirect } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 export default class App extends Component {
   state = {
@@ -59,8 +60,8 @@ export default class App extends Component {
       <BrowserRouter>
         <div className="container">
           <h1>React Board</h1>
-          {this.state.redirect_to_write && <Navigate to="/write" replace />}  {/* Navigate로 조건부 리다이렉트 */}
-          {this.state.redirect_to_home && <Navigate to="/" replace />}
+          {this.state.redirect_to_write && <Navigate to="/write" />}  {/* Navigate로 조건부 리다이렉트 */}
+          {this.state.redirect_to_home && <Navigate to="/" />}
           <Routes>
             <Route path="/" element={<BoardList isComplete={this.state.isComplete} handleModify={this.handleModify} />} />
             <Route path="/write" element={<Write 
@@ -69,6 +70,7 @@ export default class App extends Component {
               handleCancel={this.handleCancel}
             />}
             />
+            <Route path="/view" element={<View/>}/>
           </Routes>
         </div>
       </BrowserRouter>
