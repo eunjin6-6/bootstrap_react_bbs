@@ -165,10 +165,9 @@ export default class BoardList extends Component {
           <Link to="/write" className="btn btn-primary">
            글쓰기
           </Link>
-          
-          {/* <Button variant="secondary" onClick={()=>{
+          <Button variant="secondary" onClick={()=>{
             this.props.handleModify(this.state.checkList);
-          }}>수정하기</Button> */}
+          }}>수정하기</Button>
           <Button variant="danger" onClick={()=>{this.handleDelete();}}>삭제하기</Button>
         </div>
       </>

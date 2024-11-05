@@ -27,7 +27,8 @@ export default class App extends Component {
 
     this.setState({
       boardId: checkList[0] || 0
-    })
+    });
+    
   }
 
   handleCancel = ()=>{
