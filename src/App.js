@@ -2,6 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import BoardList from './BoardList';
 import Write from './Write';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 
 import React, { Component } from 'react'
 
@@ -41,13 +43,18 @@ export default class App extends Component {
     return (
     <div className="container">
       <h1 className="my-3">React Board</h1>
-      <BoardList isComplete={this.state.isComplete} handleModify={this.handleModify} />
-      <hr />
-      <Write 
-        isModifyMode={this.state.isModifyMode} 
-        boardId={this.state.boardId}
-        handleCancel = {this.handleCancel}
-      />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<BoardList isComplete={this.state.isComplete} handleModify={this.handleModify} />} />
+          <Route path="/write" element={
+            <Write 
+              isModifyMode={this.state.isModifyMode} 
+              boardId={this.state.boardId}
+              handleCancel = {this.handleCancel}
+            />} 
+          />
+        </Routes>
+      </BrowserRouter>
     </div>
     )
   }
